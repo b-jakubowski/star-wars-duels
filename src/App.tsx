@@ -6,7 +6,7 @@ import PageNotFound from './screens/PageNotFound';
 
 const App: React.FC = () => {
 	return (
-		<Router basename={process.env.PUBLIC_URL}>
+		<Router basename={process.env.REACT_APP_PUBLIC_URL}>
 			<Switch>
 				<Route exact path="/">
 					<Homepage />

@@ -1,12 +1,12 @@
 import React from 'react';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { HashRouter as Router, Switch, Route } from 'react-router-dom';
 import Homepage from './screens/Homepage';
 import Duel from './screens/Duel';
 import PageNotFound from './screens/PageNotFound';
 
 const App: React.FC = () => {
 	return (
-		<Router basename={process.env.REACT_APP_PUBLIC_URL}>
+		<Router>
 			<Switch>
 				<Route exact path="/">
 					<Homepage />

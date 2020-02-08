@@ -12,10 +12,10 @@ const App: React.FC = () => {
 					<Homepage />
 				</Route>
 				<Route path="/heroes">
-					<Duel unit={'heroes'} />
+					<Duel type={'heroes'} />
 				</Route>
 				<Route path="/starships">
-					<Duel unit={'starships'} />
+					<Duel type={'starships'} />
 				</Route>
 				<Route path="*">
 					<PageNotFound />

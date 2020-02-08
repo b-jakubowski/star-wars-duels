@@ -13,21 +13,17 @@ const useStyles = makeStyles({
 		textDecoration: 'none',
 	},
 	root: {
-		marginTop: 36,
+		marginTop: 30,
 	},
 	media: {
-		height: 260,
+		height: 250,
 	},
 	title: {
 		textAlign: 'center',
 	},
 });
 
-const ChooseDuelCard: React.FC<ChooseDuelCardProps> = ({
-	title,
-	background,
-	route,
-}: ChooseDuelCardProps) => {
+const ChooseDuelCard: React.FC<ChooseDuelCardProps> = ({ title, background, route }: ChooseDuelCardProps) => {
 	const classes = useStyles();
 
 	return (

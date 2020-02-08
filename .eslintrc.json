@@ -21,7 +21,6 @@
   ],
   "rules": {
     "implicit-arrow-linebreak": "off",
-    "indent": [2,"tab"],
     "prettier/prettier": [
       "error",
       {

@@ -78,6 +78,7 @@ const Duel: React.FC<DuelProps> = ({ type }: DuelProps) => {
 				}
 			}
 		}
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [loadingPlayers, loading, players]);
 
 	return (

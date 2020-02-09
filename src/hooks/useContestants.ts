@@ -8,12 +8,12 @@ const mapContestant = (type: ContestantType, data: any) =>
 	data.map(d => {
 		const starship = {
 			name: d.name,
-			crew: d.crew,
+			crew: d.crew === 'unknown' ? 'unknown' : +d.crew,
 		} as Starship;
 
 		const hero = {
 			name: d.name,
-			mass: d.mass,
+			mass: d.mass === 'unknown' ? 'unknown' : +d.mass,
 		} as Hero;
 
 		return isStarshipsDuel(type) ? starship : hero;

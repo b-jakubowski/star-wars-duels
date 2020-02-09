@@ -17,9 +17,9 @@ export interface Contestant {
 }
 
 export interface Hero extends Contestant {
-	[DuelUnit.MASS]: string;
+	[DuelUnit.MASS]: number | string;
 }
 
 export interface Starship extends Contestant {
-	[DuelUnit.CREW]: string;
+	[DuelUnit.CREW]: number | string;
 }

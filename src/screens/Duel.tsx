@@ -60,26 +60,16 @@ const Duel: React.FC<DuelProps> = ({ type }: DuelProps) => {
 
 	useEffect(() => {
 		if (!(loadingPlayers || loading)) {
-			if (isStarshipsDuel(type)) {
-				if (players.player1.crew > players.player2.crew) {
-					setPlayer1Points(player1Points + 1);
-					setWinner(players.player1.name);
-				} else if (players.player1.crew < players.player2.crew) {
-					setPlayer2Points(player2Points + 1);
-					setWinner(players.player2.name);
-				} else {
-					setWinner('draw!');
-				}
+			const { player1, player2 } = players;
+
+			if (player1[playerUnit] > player2[playerUnit]) {
+				setPlayer1Points(player1Points + 1);
+				setWinner(player1.name);
+			} else if (player1[playerUnit] < player2[playerUnit]) {
+				setPlayer2Points(player2Points + 1);
+				setWinner(player2.name);
 			} else {
-				if (players.player1.mass > players.player2.mass) {
-					setPlayer1Points(player1Points + 1);
-					setWinner(players.player1.name);
-				} else if (players.player1.mass < players.player2.mass) {
-					setPlayer2Points(player2Points + 1);
-					setWinner(players.player2.name);
-				} else {
-					setWinner('draw!');
-				}
+				setWinner('draw!');
 			}
 		}
 		// eslint-disable-next-line react-hooks/exhaustive-deps

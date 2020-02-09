@@ -1,6 +1,6 @@
 // @ts-nocheck
 import React, { useEffect, useState } from 'react';
-import {Box, Button, CircularProgress, Grid, Typography} from '@material-ui/core';
+import { Box, Button, CircularProgress, Grid, Typography } from '@material-ui/core';
 import Layout from '../components/Layout';
 import ContestantCard from '../components/ContestantCard';
 import useContestants from '../hooks/useContestants';
@@ -64,17 +64,21 @@ const Duel: React.FC<DuelProps> = ({ type }: DuelProps) => {
 				if (players.player1.crew > players.player2.crew) {
 					setPlayer1Points(player1Points + 1);
 					setWinner(players.player1.name);
-				} else {
+				} else if (players.player1.crew < players.player2.crew) {
 					setPlayer2Points(player2Points + 1);
 					setWinner(players.player2.name);
+				} else {
+					setWinner('draw!');
 				}
 			} else {
 				if (players.player1.mass > players.player2.mass) {
 					setPlayer1Points(player1Points + 1);
 					setWinner(players.player1.name);
-				} else {
+				} else if (players.player1.mass < players.player2.mass) {
 					setPlayer2Points(player2Points + 1);
 					setWinner(players.player2.name);
+				} else {
+					setWinner('draw!');
 				}
 			}
 		}

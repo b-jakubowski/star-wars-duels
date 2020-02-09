@@ -1,56 +1,57 @@
-import { starshipsMock } from '../mocks/starships-mock';
-import { getRandomNumber } from '../helpers/getRandomNumber';
-import { heroesMock } from '../mocks/heroes-mock';
-import starship1 from '../images/millennium-falcon-011.jpg';
-import hero1 from '../images/stormtrooper.png';
-import starship2 from '../images/starship3.png';
-import hero2 from '../images/mandalorian.png';
+import { useEffect, useState } from 'react';
+import { ContestantType, Hero, Starship } from '../types/types';
 
-interface Hero {
-	name: string;
-	mass: string;
-}
+const isStarshipsDuel = (contestantType: string) => contestantType === 'starships';
 
-interface Starship {
-	name: string;
-	crew: string;
-}
+const mapContestant = (type: ContestantType, data: any) =>
+// @ts-ignore
+	data.map(d => {
+		const starship = {
+			name: d.name,
+			crew: d.crew,
+		} as Starship;
 
-function isStarshipsDuel(contestantType: string): boolean {
-	return contestantType === 'starships';
-}
+		const hero = {
+			name: d.name,
+			mass: d.mass,
+		} as Hero;
 
-function getRandomContestant(contestantType: string): Hero | Starship {
-	const randomStarshipsNumber = getRandomNumber(starshipsMock.results.length);
-	const randomHeroesNumber = getRandomNumber(heroesMock.results.length);
+		return isStarshipsDuel(type) ? starship : hero;
+	});
 
-	return isStarshipsDuel(contestantType)
-		? {
-				name: starshipsMock.results[randomStarshipsNumber].name,
-				crew: starshipsMock.results[randomStarshipsNumber].crew,
-		  }
-		: {
-				name: heroesMock.results[randomHeroesNumber].name,
-				mass: heroesMock.results[randomHeroesNumber].mass,
-		  };
-}
+const getContestants = async (type: ContestantType) => {
+	const contestantType = type === 'heroes' ? 'people' : 'starships';
 
-const useContestants: any = (contestantType: string) => {
-	const fightUnit = isStarshipsDuel(contestantType) ? 'crew' : 'mass';
-	const contestant1 = {
-		...getRandomContestant(contestantType),
-		img: isStarshipsDuel(contestantType) ? starship1 : hero1,
-	};
-	let contestant2 = {
-		...getRandomContestant(contestantType),
-		img: isStarshipsDuel(contestantType) ? starship2 : hero2,
-	};
+	try {
+		let response = await fetch('https://swapi.co/api/' + contestantType);
+		let results = await response.json();
 
-	if (contestant1.name === contestant2.name) {
-		contestant2 = { ...contestant2, ...getRandomContestant(contestantType) };
+		let contestants = mapContestant(type, results.results);
+
+		while (results.next) {
+			response = await fetch(results.next);
+			results = (await response.json()) as { results: Hero[] | Starship[] };
+
+			contestants = [...contestants, ...mapContestant(type, results.results)] as Hero[] | Starship[];
+		}
+		return contestants;
+	} catch (e) {
+		console.error(e);
 	}
+};
 
-	return { contestant1, contestant2, fightUnit };
+const useContestants = (contestantType: ContestantType) => {
+	const [contestants, setContestants] = useState<Hero[] | Starship[]>([]);
+	const [loading, setLoading] = useState(true);
+
+	useEffect(() => {
+		getContestants(contestantType)
+			.then((res: any) => setContestants(res))
+			.catch()
+			.finally(() => setLoading(false));
+	}, [contestantType]);
+
+	return [contestants, loading];
 };
 
 export default useContestants;

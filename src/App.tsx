@@ -1,8 +1,9 @@
 import React from 'react';
-import { HashRouter as Router, Switch, Route } from 'react-router-dom';
+import { HashRouter as Router, Route, Switch } from 'react-router-dom';
 import Homepage from './screens/Homepage';
 import Duel from './screens/Duel';
 import PageNotFound from './screens/PageNotFound';
+import { ContestantType } from './types/types';
 
 const App: React.FC = () => {
 	return (
@@ -12,10 +13,10 @@ const App: React.FC = () => {
 					<Homepage />
 				</Route>
 				<Route path="/heroes">
-					<Duel type={'heroes'} />
+					<Duel type={ContestantType.HEROES} />
 				</Route>
 				<Route path="/starships">
-					<Duel type={'starships'} />
+					<Duel type={ContestantType.STARSHIPS} />
 				</Route>
 				<Route path="*">
 					<PageNotFound />

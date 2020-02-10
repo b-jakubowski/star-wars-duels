@@ -1,4 +1,3 @@
-// @ts-nocheck
 import { useEffect, useState } from 'react';
 import { Contestant, ContestantType } from '../types/types';
 
@@ -10,11 +9,11 @@ const mapContestant = (type: ContestantType, data: Contestant[]) =>
 		.map((d: Contestant) => {
 			const starship = {
 				name: d.name,
-				crew: +d.crew,
+				crew: d.crew && +d.crew,
 			};
 			const hero = {
 				name: d.name,
-				mass: +d.mass,
+				mass: d.mass && +d.mass,
 			};
 
 			return isStarshipsDuel(type) ? starship : hero;

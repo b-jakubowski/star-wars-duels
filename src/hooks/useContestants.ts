@@ -1,18 +1,20 @@
+// @ts-nocheck
 import { useEffect, useState } from 'react';
 import { Contestant, ContestantType } from '../types/types';
 
 const isStarshipsDuel = (contestantType: string) => contestantType === 'starships';
 
 const mapContestant = (type: ContestantType, data: Contestant[]) =>
-	data.map((d: Contestant) => {
+	data
+		.filter(d => d.crew !== 'unknown' && d.mass !== 'unknown')
+		.map((d: Contestant) => {
 		const starship = {
 			name: d.name,
-			crew: typeof d.crew !== 'number' ? 'unknown' : +d.crew,
+			crew: +d.crew,
 		};
-
 		const hero = {
 			name: d.name,
-			mass: typeof d.mass !== 'number' ? 'unknown' : +d.mass,
+			mass: +d.mass,
 		};
 
 		return isStarshipsDuel(type) ? starship : hero;

@@ -1,20 +1,19 @@
 import { useEffect, useState } from 'react';
-import { ContestantType, Hero, Starship } from '../types/types';
+import { Contestant, ContestantType } from '../types/types';
 
 const isStarshipsDuel = (contestantType: string) => contestantType === 'starships';
 
-const mapContestant = (type: ContestantType, data: any) =>
-// @ts-ignore
-	data.map(d => {
+const mapContestant = (type: ContestantType, data: Contestant[]) =>
+	data.map((d: Contestant) => {
 		const starship = {
 			name: d.name,
-			crew: d.crew === 'unknown' ? 'unknown' : +d.crew,
-		} as Starship;
+			crew: typeof d.crew !== 'number' ? 'unknown' : +d.crew,
+		};
 
 		const hero = {
 			name: d.name,
-			mass: d.mass === 'unknown' ? 'unknown' : +d.mass,
-		} as Hero;
+			mass: typeof d.mass !== 'number' ? 'unknown' : +d.mass,
+		};
 
 		return isStarshipsDuel(type) ? starship : hero;
 	});
@@ -26,13 +25,13 @@ const getContestants = async (type: ContestantType) => {
 		let response = await fetch('https://swapi.co/api/' + contestantType);
 		let results = await response.json();
 
-		let contestants = mapContestant(type, results.results);
+		let contestants: Contestant[] = mapContestant(type, results.results);
 
 		while (results.next) {
 			response = await fetch(results.next);
-			results = (await response.json()) as { results: Hero[] | Starship[] };
+			results = (await response.json()) as { results: Contestant[] };
 
-			contestants = [...contestants, ...mapContestant(type, results.results)] as Hero[] | Starship[];
+			contestants = [...contestants, ...mapContestant(type, results.results)] as Contestant[];
 		}
 		return contestants;
 	} catch (e) {
@@ -41,7 +40,7 @@ const getContestants = async (type: ContestantType) => {
 };
 
 const useContestants = (contestantType: ContestantType) => {
-	const [contestants, setContestants] = useState<Hero[] | Starship[]>([]);
+	const [contestants, setContestants] = useState<Contestant[]>([]);
 	const [loading, setLoading] = useState(true);
 
 	useEffect(() => {

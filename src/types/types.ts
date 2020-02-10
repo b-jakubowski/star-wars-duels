@@ -14,12 +14,6 @@ export enum DuelUnit {
 
 export interface Contestant {
 	name: string;
-}
-
-export interface Hero extends Contestant {
-	[DuelUnit.MASS]: number | string;
-}
-
-export interface Starship extends Contestant {
-	[DuelUnit.CREW]: number | string;
+	[DuelUnit.MASS]?: number | string;
+	[DuelUnit.CREW]?: number | string;
 }

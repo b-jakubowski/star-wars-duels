@@ -10,9 +10,9 @@ import hero1 from '../images/stormtrooper.png';
 import starship2 from '../images/starship3.png';
 import hero2 from '../images/mandalorian.png';
 import { isStarshipsDuel } from '../helpers/isStarshipsDuel';
-import { Contestant, ContestantType, DuelProps, DuelUnit, Hero, Starship } from '../types/types';
+import { Contestant, ContestantType, DuelProps, DuelUnit } from '../types/types';
 
-const getRandomContestant = (contestantType: ContestantType, contestants: Hero[] | Starship[]) => {
+const getRandomContestant = (contestantType: ContestantType, contestants: Contestant[]) => {
 	const randomContestantsNumber = getRandomNumber(contestants.length);
 
 	return isStarshipsDuel(contestantType)
@@ -26,7 +26,7 @@ const getRandomContestant = (contestantType: ContestantType, contestants: Hero[]
 		  };
 };
 
-const getRandomPlayers = (contestants: Hero[] | Starship[], type: ContestantType) => {
+const getRandomPlayers = (contestants: Contestant[], type: ContestantType) => {
 	const player1 = getRandomContestant(type, contestants);
 	let player2: Contestant = getRandomContestant(type, contestants);
 
@@ -39,8 +39,8 @@ const getRandomPlayers = (contestants: Hero[] | Starship[], type: ContestantType
 
 const Duel: React.FC<DuelProps> = ({ type }: DuelProps) => {
 	const [contestants, loading] = useContestants(type);
-	const [players, setPlayers] = useState<{ player1?: Hero | Starship; player2?: Hero | Starship }>({});
-	const [loadingPlayers, setLoadingPlayers] = useState(false);
+	const [players, setPlayers] = useState<{ player1?: Contestant; player2?: Contestant }>({});
+	const [loadingPlayers, setLoadingPlayers] = useState(true);
 	const [player1Points, setPlayer1Points] = useState<number>(0);
 	const [player2Points, setPlayer2Points] = useState<number>(0);
 	const [winner, setWinner] = useState('');
@@ -53,7 +53,7 @@ const Duel: React.FC<DuelProps> = ({ type }: DuelProps) => {
 		setLoadingPlayers(true);
 
 		if (!loading) {
-			setPlayers(getRandomPlayers(contestants as any, type));
+			setPlayers(getRandomPlayers(contestants, type));
 			setLoadingPlayers(false);
 		}
 	}, [loading, contestants, type]);

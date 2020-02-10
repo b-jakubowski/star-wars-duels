@@ -35,9 +35,9 @@ const ContestantCard: React.FC<ContestantCardProps> = ({ name, unit, image }: Co
 	return (
 		<Card className={classes.card}>
 			<CardContent className={classes.content}>
-				<CardHeader className={classes.title} title={name} />
+				<CardHeader data-testid="contestant-card-title" className={classes.title} title={name} />
 				<img className={classes.img} src={image} alt={image} />
-				<Typography color="textSecondary">{unit}</Typography>
+				<Typography data-testid="contestant-card-unit" color="textSecondary">{unit}</Typography>
 			</CardContent>
 		</Card>
 	);

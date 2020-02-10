@@ -30,8 +30,8 @@ const ChooseDuelCard: React.FC<ChooseDuelCardProps> = ({ title, background, rout
 		<Link className={classes.link} to={route}>
 			<Card className={classes.root}>
 				<CardContent>
-					<CardHeader className={classes.title} title={title} />
-					<CardMedia className={classes.media} image={background} />
+					<CardHeader data-testid="card-title" className={classes.title} title={title} />
+					<CardMedia data-testid="card-img" className={classes.media} image={background} />
 				</CardContent>
 			</Card>
 		</Link>

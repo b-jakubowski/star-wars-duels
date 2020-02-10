@@ -8,17 +8,17 @@ const mapContestant = (type: ContestantType, data: Contestant[]) =>
 	data
 		.filter(d => d.crew !== 'unknown' && d.mass !== 'unknown')
 		.map((d: Contestant) => {
-		const starship = {
-			name: d.name,
-			crew: +d.crew,
-		};
-		const hero = {
-			name: d.name,
-			mass: +d.mass,
-		};
+			const starship = {
+				name: d.name,
+				crew: +d.crew,
+			};
+			const hero = {
+				name: d.name,
+				mass: +d.mass,
+			};
 
-		return isStarshipsDuel(type) ? starship : hero;
-	});
+			return isStarshipsDuel(type) ? starship : hero;
+		});
 
 const getContestants = async (type: ContestantType) => {
 	const contestantType = type === 'heroes' ? 'people' : 'starships';

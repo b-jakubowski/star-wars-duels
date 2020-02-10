@@ -1,0 +1,37 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ContestantCard renders correctly 1`] = `
+<div
+  className="MuiPaper-root MuiCard-root makeStyles-card-73 MuiPaper-elevation1 MuiPaper-rounded"
+>
+  <div
+    className="MuiCardContent-root makeStyles-content-74"
+  >
+    <div
+      className="MuiCardHeader-root makeStyles-title-76"
+      data-testid="contestant-card-title"
+    >
+      <div
+        className="MuiCardHeader-content"
+      >
+        <span
+          className="MuiTypography-root MuiCardHeader-title MuiTypography-h5 MuiTypography-displayBlock"
+        >
+          Death Star
+        </span>
+      </div>
+    </div>
+    <img
+      alt="millennium-falcon-011.jpg"
+      className="makeStyles-img-75"
+      src="millennium-falcon-011.jpg"
+    />
+    <p
+      className="MuiTypography-root MuiTypography-body1 MuiTypography-colorTextSecondary"
+      data-testid="contestant-card-unit"
+    >
+      mass: 73228
+    </p>
+  </div>
+</div>
+`;

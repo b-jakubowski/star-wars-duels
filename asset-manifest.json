@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.js": "/star-wars-duels/static/js/main.93d1e492.chunk.js",
+    "main.js.map": "/star-wars-duels/static/js/main.93d1e492.chunk.js.map",
+    "runtime-main.js": "/star-wars-duels/static/js/runtime-main.3421fba1.js",
+    "runtime-main.js.map": "/star-wars-duels/static/js/runtime-main.3421fba1.js.map",
+    "static/js/2.8b6d4b72.chunk.js": "/star-wars-duels/static/js/2.8b6d4b72.chunk.js",
+    "static/js/2.8b6d4b72.chunk.js.map": "/star-wars-duels/static/js/2.8b6d4b72.chunk.js.map",
+    "index.html": "/star-wars-duels/index.html",
+    "precache-manifest.1f727e8a36018e40d6897fad096d5b27.js": "/star-wars-duels/precache-manifest.1f727e8a36018e40d6897fad096d5b27.js",
+    "service-worker.js": "/star-wars-duels/service-worker.js",
+    "static/js/2.8b6d4b72.chunk.js.LICENSE.txt": "/star-wars-duels/static/js/2.8b6d4b72.chunk.js.LICENSE.txt",
+    "static/media/duel-pic.jpg": "/star-wars-duels/static/media/duel-pic.266338eb.jpg",
+    "static/media/mandalorian.png": "/star-wars-duels/static/media/mandalorian.d2b278cf.png",
+    "static/media/millennium-falcon-011.jpg": "/star-wars-duels/static/media/millennium-falcon-011.3e98ee67.jpg",
+    "static/media/starship3.png": "/star-wars-duels/static/media/starship3.48882771.png",
+    "static/media/starships-pic.jpg": "/star-wars-duels/static/media/starships-pic.a02e14eb.jpg",
+    "static/media/stormtrooper.png": "/star-wars-duels/static/media/stormtrooper.adcf3351.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.3421fba1.js",
+    "static/js/2.8b6d4b72.chunk.js",
+    "static/js/main.93d1e492.chunk.js"
+  ]
+}

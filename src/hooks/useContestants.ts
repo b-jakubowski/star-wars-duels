@@ -23,7 +23,7 @@ const getContestants = async (type: ContestantType) => {
 	const contestantType = type === 'heroes' ? 'people' : 'starships';
 
 	try {
-		let response = await fetch('https://swapi.co/api/' + contestantType);
+		let response = await fetch('https://swapi.dev/api/' + contestantType);
 		let results = await response.json();
 
 		let contestants: Contestant[] = mapContestant(type, results.results);
